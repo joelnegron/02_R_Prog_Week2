@@ -448,9 +448,24 @@ summary {
 </div>
 <div id="part-1-solution" class="section level3">
 <h3>Part 1 Solution:</h3>
-<pre class="r"><code>pullutant &lt;- function(directory, pollutant, id = 1:332) {
-        
-}</code></pre>
+<pre class="r"><code># pullutantmean &lt;- function(directory, pollutant, id = 1:332) {
+#         
+#         monitorList &lt;- lapply(id, function(id) {
+#                 padId &lt;- str_pad(as.character(id), width = 3, side = &quot;left&quot;, pad = &quot;0&quot;)
+#                 path &lt;- paste0(directory, &quot;/&quot;, padId, &#39;.csv&#39;)
+#                 return(read.csv(path))
+#         })
+#         monitorData &lt;- do.call(&quot;rbind&quot;, monitorList)
+#         pollutantAvg &lt;- mean(monitorData[, pollutant], na.rm = TRUE)
+#                 return(pollutantAvg)
+# }</code></pre>
+<pre class="r"><code>source(&quot;pollutantmean.R&quot;)
+pullutantmean(&quot;specdata&quot;, &quot;sulfate&quot;, 1:10)</code></pre>
+<pre><code>## [1] 4.064128</code></pre>
+<pre class="r"><code>pullutantmean(&quot;specdata&quot;, &quot;nitrate&quot;, 70:72)</code></pre>
+<pre><code>## [1] 1.706047</code></pre>
+<pre class="r"><code>pullutantmean(&quot;specdata&quot;, &quot;nitrate&quot;, 23)</code></pre>
+<pre><code>## [1] 1.280833</code></pre>
 </div>
 <div id="part-2" class="section level3">
 <h3>Part 2</h3>

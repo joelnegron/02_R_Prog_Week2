@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(stringr)
 ```
 
 ## Programming Assignment 1 INSTRUCTIONS: Air Pollution
@@ -48,10 +49,24 @@ You can see some example output from this function below. The function that you 
 ### Part 1 Solution:
 
 ```{r}
-pullutant <- function(directory, pollutant, id = 1:332) {
-        
-}
+# pullutantmean <- function(directory, pollutant, id = 1:332) {
+#         
+#         monitorList <- lapply(id, function(id) {
+#                 padId <- str_pad(as.character(id), width = 3, side = "left", pad = "0")
+#                 path <- paste0(directory, "/", padId, '.csv')
+#                 return(read.csv(path))
+#         })
+#         monitorData <- do.call("rbind", monitorList)
+#         pollutantAvg <- mean(monitorData[, pollutant], na.rm = TRUE)
+#                 return(pollutantAvg)
+# }
+```
 
+```{r}
+source("pollutantmean.R")
+pullutantmean("specdata", "sulfate", 1:10)
+pullutantmean("specdata", "nitrate", 70:72)
+pullutantmean("specdata", "nitrate", 23)
 ```
 
 ### Part 2
