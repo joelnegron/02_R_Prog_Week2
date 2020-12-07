@@ -49,16 +49,18 @@ You can see some example output from this function below. The function that you 
 ### Part 1 Solution:
 
 ```{r}
+# # Pollutant Mean Function:
 # pullutantmean <- function(directory, pollutant, id = 1:332) {
-#         
+#         # Create a list with the data based on the id argument.
 #         monitorList <- lapply(id, function(id) {
 #                 padId <- str_pad(as.character(id), width = 3, side = "left", pad = "0")
 #                 path <- paste0(directory, "/", padId, '.csv')
 #                 return(read.csv(path))
 #         })
+#         # rbind the data frames and estimate the mean
 #         monitorData <- do.call("rbind", monitorList)
 #         pollutantAvg <- mean(monitorData[, pollutant], na.rm = TRUE)
-#                 return(pollutantAvg)
+#         return(pollutantAvg)
 # }
 ```
 
@@ -82,10 +84,30 @@ You can see some example output from this function below. The function that you 
 ### Part 2 Solution:
 
 ```{r}
-complete <- function(directory, id = 1:332) {
-        
-}
+# # Complete Function:
+# complete <- function(directory, id = 1:332) {
+#         # Create a list of Id's and number of completed observations
+#         completeList <- lapply(id, function(id) {
+#                 padId <- str_pad(as.character(id), width = 3, side = "left", pad = "0")
+#                 path <- paste0(directory, "/", padId, '.csv')
+#                 monitorIdData <- read.csv(path)
+#                 completeIndex <- !is.na(monitorIdData$nitrate) & !is.na(monitorIdData$sulfate)
+#                 CompleteData <- monitorIdData[completeIndex, ]
+#                 return(c(id, nrow(CompleteData)))
+#         })
+#         
+#         # rbind id and count of complete rows
+#         completeData <- do.call("rbind", completeList)
+#         return(completeData)
+# }
+```
 
+```{r}
+source("complete.R")
+complete("specdata", 1)
+complete("specdata", c(2, 4, 8, 10, 12))
+complete("specdata", 30:25)
+complete("specdata", 3)
 ```
 
 ### Part 3
