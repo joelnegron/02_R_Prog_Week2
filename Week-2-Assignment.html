@@ -462,11 +462,11 @@ summary {
 #         return(pollutantAvg)
 # }</code></pre>
 <pre class="r"><code>source(&quot;pollutantmean.R&quot;)
-pullutantmean(&quot;specdata&quot;, &quot;sulfate&quot;, 1:10)</code></pre>
+pollutantmean(&quot;specdata&quot;, &quot;sulfate&quot;, 1:10)</code></pre>
 <pre><code>## [1] 4.064128</code></pre>
-<pre class="r"><code>pullutantmean(&quot;specdata&quot;, &quot;nitrate&quot;, 70:72)</code></pre>
+<pre class="r"><code>pollutantmean(&quot;specdata&quot;, &quot;nitrate&quot;, 70:72)</code></pre>
 <pre><code>## [1] 1.706047</code></pre>
-<pre class="r"><code>pullutantmean(&quot;specdata&quot;, &quot;nitrate&quot;, 23)</code></pre>
+<pre class="r"><code>pollutantmean(&quot;specdata&quot;, &quot;nitrate&quot;, 23)</code></pre>
 <pre><code>## [1] 1.280833</code></pre>
 </div>
 <div id="part-2" class="section level3">
@@ -570,6 +570,66 @@ summary(cr)</code></pre>
 ## -1.00000 -0.05282  0.10718  0.13684  0.27831  1.00000</code></pre>
 <pre class="r"><code>length(cr)</code></pre>
 <pre><code>## [1] 323</code></pre>
+</div>
+<div id="quiz" class="section level3">
+<h3>Quiz</h3>
+<pre class="r"><code># Q1
+pollutantmean(&quot;specdata&quot;, &quot;sulfate&quot;, 1:10)</code></pre>
+<pre><code>## [1] 4.064128</code></pre>
+<pre class="r"><code># Q2
+pollutantmean(&quot;specdata&quot;, &quot;nitrate&quot;, 70:72)</code></pre>
+<pre><code>## [1] 1.706047</code></pre>
+<pre class="r"><code># Q3
+pollutantmean(&quot;specdata&quot;, &quot;sulfate&quot;, 34)</code></pre>
+<pre><code>## [1] 1.477143</code></pre>
+<pre class="r"><code># Q4
+pollutantmean(&quot;specdata&quot;, &quot;nitrate&quot;)</code></pre>
+<pre><code>## [1] 1.702932</code></pre>
+<pre class="r"><code># Q5
+cc &lt;- complete(&quot;specdata&quot;, c(6, 10, 20, 34, 100, 200, 310))
+print(cc$nobs)</code></pre>
+<pre><code>## [1] 228 148 124 165 104 460 232</code></pre>
+<pre class="r"><code># Q6
+cc &lt;- complete(&quot;specdata&quot;, 54)
+print(cc$nobs)</code></pre>
+<pre><code>## [1] 219</code></pre>
+<pre class="r"><code># Q7
+RNGversion(&quot;3.5.1&quot;)  </code></pre>
+<pre><code>## Warning in RNGkind(&quot;Mersenne-Twister&quot;, &quot;Inversion&quot;, &quot;Rounding&quot;): non-uniform
+## &#39;Rounding&#39; sampler used</code></pre>
+<pre class="r"><code>set.seed(42)
+cc &lt;- complete(&quot;specdata&quot;, 332:1)
+use &lt;- sample(332, 10)
+print(cc[use, &quot;nobs&quot;])</code></pre>
+<pre><code>##  [1] 711 135  74 445 178  73  49   0 687 237</code></pre>
+<pre class="r"><code># Q8
+cr &lt;- corr(&quot;specdata&quot;)                
+cr &lt;- sort(cr)   
+RNGversion(&quot;3.5.1&quot;)</code></pre>
+<pre><code>## Warning in RNGkind(&quot;Mersenne-Twister&quot;, &quot;Inversion&quot;, &quot;Rounding&quot;): non-uniform
+## &#39;Rounding&#39; sampler used</code></pre>
+<pre class="r"><code>set.seed(868)                
+out &lt;- round(cr[sample(length(cr), 5)], 4)
+print(out)</code></pre>
+<pre><code>## [1]  0.2688  0.1127 -0.0085  0.4586  0.0447</code></pre>
+<pre class="r"><code># Q9
+cr &lt;- corr(&quot;specdata&quot;, 129)                
+cr &lt;- sort(cr)                
+n &lt;- length(cr)    
+RNGversion(&quot;3.5.1&quot;)</code></pre>
+<pre><code>## Warning in RNGkind(&quot;Mersenne-Twister&quot;, &quot;Inversion&quot;, &quot;Rounding&quot;): non-uniform
+## &#39;Rounding&#39; sampler used</code></pre>
+<pre class="r"><code>set.seed(197)                
+out &lt;- c(n, round(cr[sample(n, 5)], 4))
+print(out)</code></pre>
+<pre><code>## [1] 243.0000   0.2540   0.0504  -0.1462  -0.1680   0.5969</code></pre>
+<pre class="r"><code># Q10
+cr &lt;- corr(&quot;specdata&quot;, 2000)                
+n &lt;- length(cr)                
+cr &lt;- corr(&quot;specdata&quot;, 1000)                
+cr &lt;- sort(cr)
+print(c(n, round(cr, 4)))</code></pre>
+<pre><code>## [1]  0.0000 -0.0190  0.0419  0.1901</code></pre>
 </div>
 </div>
 
