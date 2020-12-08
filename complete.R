@@ -18,5 +18,3 @@ complete <- function(directory, id = 1:332) {
         names(completeData) <- c('id', 'nobs')
         return(completeData)
 }
-
-

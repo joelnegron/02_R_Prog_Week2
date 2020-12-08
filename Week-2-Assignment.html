@@ -527,9 +527,49 @@ complete(&quot;specdata&quot;, 1)</code></pre>
 </div>
 <div id="part-3-solution" class="section level3">
 <h3>Part 3 Solution:</h3>
-<pre class="r"><code>corr &lt;- function(directory, threshold = 0) {
-        
-}</code></pre>
+<pre class="r"><code># # correlation Function:
+# corr &lt;- function(directory, threshold = 0) {
+#         # Get the id&#39;s for monitors that meet the threshold
+#         compData &lt;- complete(directory)
+#         CompDataThreshold &lt;- compData[compData$nobs &gt;= threshold, ]
+#         id = CompDataThreshold$id
+#         
+#         # Calculate the correlation for the id&#39;s that meet the threshold and save in a vector
+#         correlations &lt;- sapply(id, function(id) {
+#                 padId &lt;- str_pad(as.character(id), width = 3, side = &quot;left&quot;, pad = &quot;0&quot;)
+#                 path &lt;- paste0(directory, &quot;/&quot;, padId, &#39;.csv&#39;)
+#                 monitorData &lt;- read.csv(path)
+#                 corr &lt;- with(monitorData, cor(sulfate, nitrate, use = &quot;complete.obs&quot;))
+#                 return(corr)
+#         })
+#         return(correlations)
+# }</code></pre>
+<pre class="r"><code>source(&quot;corr.R&quot;)
+source(&quot;complete.R&quot;)
+cr &lt;- corr(&quot;specdata&quot;, 150)
+head(cr)</code></pre>
+<pre><code>## [1] -0.01895754 -0.14051254 -0.04389737 -0.06815956 -0.12350667 -0.07588814</code></pre>
+<pre class="r"><code>summary(cr)</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.21057 -0.04999  0.09463  0.12525  0.26844  0.76313</code></pre>
+<pre class="r"><code>cr &lt;- corr(&quot;specdata&quot;, 400)
+head(cr)</code></pre>
+<pre><code>## [1] -0.01895754 -0.04389737 -0.06815956 -0.07588814  0.76312884 -0.15782860</code></pre>
+<pre class="r"><code>summary(cr)</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -0.17623 -0.03109  0.10021  0.13969  0.26849  0.76313</code></pre>
+<pre class="r"><code>cr &lt;- corr(&quot;specdata&quot;, 5000)
+summary(cr)</code></pre>
+<pre><code>## Length  Class   Mode 
+##      0   list   list</code></pre>
+<pre class="r"><code>length(cr)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>cr &lt;- corr(&quot;specdata&quot;)
+summary(cr)</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -1.00000 -0.05282  0.10718  0.13684  0.27831  1.00000</code></pre>
+<pre class="r"><code>length(cr)</code></pre>
+<pre><code>## [1] 323</code></pre>
 </div>
 </div>
 

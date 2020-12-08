@@ -5,7 +5,7 @@
 corr <- function(directory, threshold = 0) {
         # Get the id's for monitors that meet the threshold
         compData <- complete(directory)
-        CompDataThreshold <- compData[compData$nobs >= threshold, ]
+        CompDataThreshold <- compData[compData$nobs > threshold, ]
         id = CompDataThreshold$id
         
         # Calculate the correlation for the id's that meet the threshold and save in a vector
