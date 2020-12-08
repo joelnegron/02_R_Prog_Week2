@@ -2,7 +2,7 @@
 # R Programming Week 2 Assignment: Part 1 ---------------------------------
 
 # Pollutant Mean Function:
-pullutantmean <- function(directory, pollutant, id = 1:332) {
+pollutantmean <- function(directory, pollutant, id = 1:332) {
         # Create a list with the data based on the id argument.
         monitorList <- lapply(id, function(id) {
                 padId <- str_pad(as.character(id), width = 3, side = "left", pad = "0")

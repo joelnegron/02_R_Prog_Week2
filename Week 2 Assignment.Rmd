@@ -66,9 +66,9 @@ You can see some example output from this function below. The function that you 
 
 ```{r}
 source("pollutantmean.R")
-pullutantmean("specdata", "sulfate", 1:10)
-pullutantmean("specdata", "nitrate", 70:72)
-pullutantmean("specdata", "nitrate", 23)
+pollutantmean("specdata", "sulfate", 1:10)
+pollutantmean("specdata", "nitrate", 70:72)
+pollutantmean("specdata", "nitrate", 23)
 ```
 
 ### Part 2
